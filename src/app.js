@@ -1,6 +1,6 @@
 import { getSubscribedCount } from './state/subscription.js';
-import { initProviderGrid } from './ui/provider.js';
-//import { initRollingNews } from './ui/rolling.js';
+import { initPressGrid } from './ui/pressGrid.js';
+import { initRollingNews } from './ui/rollingNews.js';
 
 const badge = document.querySelector('.sub-badge');
 
@@ -9,8 +9,8 @@ function updateSubscriptionBadge() {
     badge.textContent = count;
 }
 
-//initRollingNews();
-initProviderGrid({
+initRollingNews();
+initPressGrid({
     onSubscribeChange: updateSubscriptionBadge,
 });
 
