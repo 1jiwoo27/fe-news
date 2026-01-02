@@ -45,10 +45,7 @@ export function initPressGrid() {
 function renderPressGrid() {
     grid.innerHTML = '';
 
-    const data = getGridData();
-    
-    console.log('current tab:', currentTab, 'data length:', data.length);
-    
+    const data = getGridData();    
     const start = currentPage * PER_PAGE;
     const items = data.slice(start, start + PER_PAGE);
 
