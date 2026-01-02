@@ -23,12 +23,12 @@ function shuffle(array) {
 const shufflePressLogos = shuffle(pressLogos);
 
 export function initPressGrid() {
-    render();
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
+    renderPressGrid();
+    prevBtn.addEventListener('click', goPrev);
+    nextBtn.addEventListener('click', goNext);
 }
 
-function render() {
+function renderPressGrid() {
     grid.innerHTML = '';
 
     const start = currentPage * PER_PAGE;
@@ -50,14 +50,14 @@ function render() {
     nextBtn.style.display = currentPage === lastPage ? 'none' : 'block';
 }
 
-function prev() {
+function goPrev() {
     if (currentPage === 0) return;
     currentPage--;
-    render();
+    renderPressGrid();
 }
 
-function next() {
+function goNext() {
     if (currentPage === lastPage) return;
     currentPage++;
-    render();
+    renderPressGrid();
 }

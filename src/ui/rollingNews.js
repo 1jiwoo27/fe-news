@@ -3,8 +3,9 @@ import { rollingNews } from '../data/rollingNews.js';
 const INTERVAL = 5000;
 const DELAY = 1000;
 
-let leftTimer;
-let rightTimer;
+let leftInterval;
+let rightInterval;
+let rightDelayTimeout;
 let hoverTimeout;
 
 function createItem({ provider, headline }) {
@@ -23,61 +24,60 @@ function createItem({ provider, headline }) {
     return li;
 }
 
-function render(listEl, data) {
+function renderRollingNews(list, data) {
     data.forEach((item) => {
-        listEl.appendChild(createItem(item));
+        list.appendChild(createItem(item));
     });
 }
 
-function roll(list) {
-    const first = list.firstElementChild;
+function roll(track) {
+    const first = track.firstElementChild;
     const height = first.offsetHeight;
     
-    list.style.transition = 'transform 0.5s ease';
-    list.style.transform = `translateY(-${height}px)`;
+    track.style.transition = 'transform 0.5s ease';
+    track.style.transform = `translateY(-${height}px)`;
 
-    list.addEventListener(
+    track.addEventListener(
         'transitionend',
         () => {
-            list.style.transition = 'none';
-            list.style.transform = 'translateY(0)';
-        list.appendChild(first);
+            track.style.transition = 'none';
+            track.style.transform = 'translateY(0)';
+            track.appendChild(first);
         },
         { once: true }
     );
 }
 
-function start(left, right) {
-    leftTimer = setInterval(() => roll(left), INTERVAL);
-    rightTimer = setInterval(() => roll(right), INTERVAL);
+function startRolling(left, right) {
+    stopRolling();
+    leftInterval = setInterval(() => roll(left), INTERVAL);
+    rightDelayTimeout = setTimeout(() => rightInterval = setInterval(() => roll(right), INTERVAL), DELAY);
 }
 
-function stop() {
-    clearInterval(leftTimer);
-    clearInterval(rightTimer);
+function stopRolling() {
+    clearInterval(leftInterval);
+    clearInterval(rightInterval);
+    clearTimeout(rightDelayTimeout);
 }
 
 export function initRollingNews() {
-    const leftList = document.querySelector('.rolling-left');
-    const rightList = document.querySelector('.rolling-right');
+    const leftTrack = document.querySelector('.rolling-left .rolling-track');
+    const rightTrack = document.querySelector('.rolling-right .rolling-track');
 
-    render(leftList, rollingNews.left);
-    render(rightList, rollingNews.right);
-
-    leftTimer = setInterval(() => roll(leftList), INTERVAL);
-    setTimeout(() => {
-        rightTimer = setInterval(() => roll(rightList), INTERVAL);
-    }, DELAY);
+    renderRollingNews(leftTrack, rollingNews.left);
+    renderRollingNews(rightTrack, rollingNews.right);
+    startRolling(leftTrack, rightTrack);
     
-    [leftList, rightList].forEach((list) => {
-        list.addEventListener('mouseenter', () => {
-        stop();
+    [leftTrack, rightTrack].forEach((track) => {
+        track.addEventListener('mouseenter', () => {
+        stopRolling();
         clearTimeout(hoverTimeout);
         });
 
-        list.addEventListener('mouseleave', () => {
+        track.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
             hoverTimeout = setTimeout(() => {
-                start(leftList, rightList);
+                startRolling(leftTrack, rightTrack);
             }, DELAY);
         });
     });
