@@ -2,7 +2,6 @@ import { pressLogos, PER_PAGE } from '../data/press.js';
 import { isSubscribed } from '../state/subscription.js';
 
 let currentTab = 'all';
-
 let currentPage = 0;
 const lastPage = 3;
 
@@ -22,6 +21,21 @@ function shuffle(array) {
 
 const shufflePressLogos = shuffle(pressLogos);
 
+export function setPressGridTab(tab) {
+    currentTab = tab;
+    currentPage = 0;
+    renderPressGrid();
+}
+
+// 전체 / 구독한 언론사 데이터 반환
+function getGridData() {
+    if (currentTab === 'all') {
+        return shufflePressLogos;
+    } else {
+        return shufflePressLogos.filter(({ id }) => isSubscribed(id));
+    }
+}
+
 export function initPressGrid() {
     renderPressGrid();
     prevBtn.addEventListener('click', goPrev);
@@ -31,8 +45,12 @@ export function initPressGrid() {
 function renderPressGrid() {
     grid.innerHTML = '';
 
+    const data = getGridData();
+    
+    console.log('current tab:', currentTab, 'data length:', data.length);
+    
     const start = currentPage * PER_PAGE;
-    const items = shufflePressLogos.slice(start, start + PER_PAGE);
+    const items = data.slice(start, start + PER_PAGE);
 
     items.forEach(({ src }) => {
         const li = document.createElement('li');
@@ -45,6 +63,14 @@ function renderPressGrid() {
         li.appendChild(img);
         grid.appendChild(li);
     });
+
+    // 빈 칸 채우기
+    const emptyCount = PER_PAGE - items.length;
+    for (let i = 0; i < emptyCount; i++) {
+        const li = document.createElement('li');
+        li.className = 'provider-item provider-item--empty';
+        grid.appendChild(li);
+    }
 
     prevBtn.style.display = currentPage === 0 ? 'none' : 'block';
     nextBtn.style.display = currentPage === lastPage ? 'none' : 'block';
