@@ -5,7 +5,6 @@ let currentTab = 'all';
 const allTab = document.querySelector('.tab-all');
 const subscribedTab = document.querySelector('.tab-subscribed');
 
-
 function setTab(tab) {
     if (tab === currentTab) return;
     currentTab = tab;
