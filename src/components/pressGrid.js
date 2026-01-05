@@ -78,8 +78,8 @@ function renderPressGrid() {
         grid.appendChild(li);
     }
 
-    prevBtn.style.display = currentPage === 0 ? 'none' : 'block';
-    nextBtn.style.display = currentPage === lastPage ? 'none' : 'block';
+    prevBtn.classList.toggle('hidden', currentPage === 0);
+    nextBtn.classList.toggle('hidden', currentPage === lastPage);
 }
 
 function goPrev() {

@@ -252,6 +252,13 @@ body {
   border: none;
   padding: none;
   cursor: pointer;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.grid-nav-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .grid-nav-btn--prev {
