@@ -1,19 +1,11 @@
-import { getSubscribedCount } from './state/subscription.js';
+import { initSubscriptionBadge } from './components/subBadge.js';
 import { initPressGrid } from './components/pressGrid.js';
 import { initProviderTabs } from './components/providerTabs.js';
 import { initRollingNews } from './components/rollingNews.js';
 
-const badge = document.querySelector('.sub-badge');
-
-function updateSubscriptionBadge() {
-    const count = getSubscribedCount();
-    badge.textContent = count;
-}
+const subscriptionBadge = initSubscriptionBadge();
 
 initRollingNews();
 initProviderTabs();
-initPressGrid({
-    onSubscribeChange: updateSubscriptionBadge,
-});
-
-updateSubscriptionBadge();
+initPressGrid();
+subscriptionBadge.update();
