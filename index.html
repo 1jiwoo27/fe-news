@@ -1,80 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>News Stand</title>
     <link rel="stylesheet" href="./src/style.css" />
-</head>
-<body>
+  </head>
+  <body>
     <div id="app" class="news-stand">
-        <!-- 상단 영역 -->
-        <header class="news-header">
-            <div class="news-title">
-                <img
-                    src="./src/assets/newspaper.svg"
-                    alt="뉴스스탠드 로고"
-                    class="news-logo"
-                />
-                <h1 class="news-text">뉴스스탠드</h1>
+      <!-- 상단 영역 -->
+      <header class="news-header">
+        <div class="news-title">
+          <img src="./src/assets/newspaper.svg" alt="뉴스스탠드 로고" class="news-logo" />
+          <h1 class="news-text">뉴스스탠드</h1>
+        </div>
+        <p class="news-date">2026. 01. 14. 수요일</p>
+      </header>
+
+      <main class="news-main">
+        <!-- 최신 뉴스 자동 롤링 영역 -->
+        <section class="rolling-section" aria-label="최신 뉴스 자동 롤링 영역">
+          <div class="rolling-container">
+            <div class="rolling-list rolling-left">
+              <ul class="rolling-track"></ul>
             </div>
-            <p class="news-date">2026. 01. 14. 수요일</p>
-        </header>
+            <div class="rolling-list rolling-right">
+              <ul class="rolling-track"></ul>
+            </div>
+          </div>
+        </section>
 
-        <main class="news-main">
-            <!-- 최신 뉴스 자동 롤링 영역 -->
-            <section class="rolling-section" aria-label="최신 뉴스 자동 롤링 영역">
-                <div class="rolling-container">
-                    <div class="rolling-list rolling-left">
-                        <ul class="rolling-track"></ul>
-                    </div>
-                    <div class="rolling-list rolling-right">
-                        <ul class="rolling-track"></ul>
-                    </div>
-                </div>
-            </section>
+        <!-- 언론사별 기사 확인 영역 -->
+        <section class="provider-section" aria-label="언론사별 기사 확인 영역">
+          <!-- 탭 영역 -->
+          <div class="provider-tab" aria-label="언론사 보기 설정 탭">
+            <div class="text-tab-group" role="tablist">
+              <button class="text-tab text-tab--all text-tab--active" data-tab="all">
+                전체 언론사
+              </button>
+              <button class="text-tab text-tab--subscribed" data-tab="subscribed">
+                내가 구독한 언론사
+                <span class="sub-badge">0</span>
+              </button>
+            </div>
 
-            <!-- 언론사별 기사 확인 영역 -->
-            <section class="provider-section" aria-label="언론사별 기사 확인 영역">
-                <!-- 탭 영역 -->
-                <div class="provider-tab" aria-label="언론사 보기 설정 탭">
-                    <div class="text-tab-group" role="tablist">
-                        <button class="text-tab text-tab--all text-tab--active" data-tab="all">
-                            전체 언론사
-                        </button>
-                        <button class="text-tab text-tab--subscribed" data-tab="subscribed">
-                            내가 구독한 언론사
-                            <span class="sub-badge">0</span>
-                        </button>
-                    </div>
+            <div class="icon-tab-group" role="tablist">
+              <button class="icon-tab icon-tab--list" data-view="list">
+                <img src="./src/assets/list-view.svg" alt="리스트 뷰" />
+              </button>
+              <button class="icon-tab icon-tab--grid icon-tab--active" data-view="grid">
+                <img src="./src/assets/grid-view.svg" alt="그리드 뷰" />
+              </button>
+            </div>
+          </div>
 
-                    <div class="icon-tab-group" role="tablist">
-                        <button class="icon-tab icon-tab--list" data-view="list">
-                            <img src="./src/assets/list-view.svg" alt="리스트 뷰" />
-                        </button>
-                        <button class="icon-tab icon-tab--grid icon-tab--active" data-view="grid">
-                            <img src="./src/assets/grid-view.svg" alt="그리드 뷰" />
-                        </button>
-                    </div>
-                </div>
-
-                <!-- View 영역 -->
-                <div class="provider-view">
-                    <button class="nav-btn nav-btn--prev" aria-label="이전 페이지">
-                        <img src="./src/assets/left-arrow.svg" alt="" />
-                    </button>
-                    <div class="provider-view__content">
-                        <ul class="provider-grid view view--grid view--active"></ul>
-                        <ul class="provider-list view view--list"></ul>
-                    </div>
-                    <button class="nav-btn nav-btn--next" aria-label="다음 페이지">
-                        <img src="./src/assets/right-arrow.svg" alt="" />
-                    </button>
-                </div>
-            </section>
-        </main>
+          <!-- View 영역 -->
+          <div class="provider-view">
+            <button class="nav-btn nav-btn--prev" aria-label="이전 페이지">
+              <img src="./src/assets/left-arrow.svg" alt="" />
+            </button>
+            <div class="provider-view__content">
+              <ul class="provider-grid view view--grid view--active"></ul>
+              <ul class="provider-list view view--list"></ul>
+            </div>
+            <button class="nav-btn nav-btn--next" aria-label="다음 페이지">
+              <img src="./src/assets/right-arrow.svg" alt="" />
+            </button>
+          </div>
+        </section>
+      </main>
     </div>
 
     <script type="module" src="./src/app.js"></script>
-</body>
+  </body>
 </html>

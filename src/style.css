@@ -2,21 +2,27 @@
   Base Reset & Variables
 ========================= */
 :root {
-  --color-bg: #F5F7F9;
-  --color-text: #14121B;
-  --color-subtext: #5F6E76;
-  --color-border: #D2DAE0;
+  --color-bg: #f5f7f9;
+  --color-text: #14121b;
+  --color-subtext: #5f6e76;
+  --color-border: #d2dae0;
 
   --color-primary: #4f6ef7;
-  --color-primary-light: #7890E7;
+  --color-primary-light: #7890e7;
 
   --color-gray-400: #879298;
   --color-gray-500: #879289;
 
-  --color-white: #FFFFFF;
+  --color-white: #ffffff;
 
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
 * {
@@ -106,7 +112,7 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  height: 44px; 
+  height: 44px;
 }
 
 .rolling-item {
@@ -117,7 +123,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  position: absolute; 
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -180,7 +186,7 @@ body {
   position: relative;
 }
 
-.text-tab--subscribed  {
+.text-tab--subscribed {
   display: flex;
   gap: 4px;
 }
@@ -219,7 +225,6 @@ body {
 .icon-tab img {
   opacity: 0.6;
   filter: grayscale(100%);
-  
 }
 
 .icon-tab--active img {
@@ -300,7 +305,7 @@ body {
   transition: opacity 0.2s ease;
 }
 
-.provider-item:hover .provider-logo{
+.provider-item:hover .provider-logo {
   opacity: 0;
 }
 
@@ -356,6 +361,6 @@ body {
 }
 
 .provider-item:hover .sub-button {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }

@@ -12,25 +12,25 @@ initSubscriptionBadge();
 const grid = initPressGrid();
 
 const navigation = initNavigation({
-    onPrev: () => {
-        const state = grid.goPrev();
-        if (state) navigation.update(state);
-    },
-    onNext: () => {
-        const state = grid.goNext();
-        if (state) navigation.update(state);
-    },
+  onPrev: () => {
+    const state = grid.goPrev();
+    if (state) navigation.update(state);
+  },
+  onNext: () => {
+    const state = grid.goNext();
+    if (state) navigation.update(state);
+  },
 });
 
 navigation.update(grid.render());
 
-initTextTabs(tab => {
-    const state = grid.setTab(tab);
-    navigation.update(state);
+initTextTabs((tab) => {
+  const state = grid.setTab(tab);
+  navigation.update(state);
 });
 
 const providerView = initProviderView();
 
-initIconTabs(view => {
-    providerView.setView(view);
+initIconTabs((view) => {
+  providerView.setView(view);
 });
