@@ -24,7 +24,7 @@ export function initPressGrid() {
         const start = currentPage * PER_PAGE;
         const items = data.slice(start, start + PER_PAGE);
 
-        items.forEach(({ id, src, name }) => {
+        items.forEach(({ id, src }) => {
             const li = document.createElement('li');
             li.className = 'provider-item';
 
@@ -33,7 +33,6 @@ export function initPressGrid() {
 
             const logo = document.createElement('img');
             logo.src = src;
-            logo.alt = name ?? '';
             logo.className = 'provider-logo';
 
             const subButton = createSubButton(id);
