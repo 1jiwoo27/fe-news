@@ -2,14 +2,27 @@
   Base Reset & Variables
 ========================= */
 :root {
-  --color-bg: #F5F7F9;
-  --color-text: #14121B;
-  --color-subtext: #5F6E76;
-  --color-border: #D2DAE0;
-  --color-primary: #4f6ef7;
+  --color-bg: #f5f7f9;
+  --color-text: #14121b;
+  --color-subtext: #5f6e76;
+  --color-border: #d2dae0;
 
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Helvetica, Arial, sans-serif;
+  --color-primary: #4f6ef7;
+  --color-primary-light: #7890e7;
+
+  --color-gray-400: #879298;
+  --color-gray-500: #879289;
+
+  --color-white: #ffffff;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
 * {
@@ -18,7 +31,7 @@
 
 body {
   margin: 0;
-  background-color: #FFFFFF;
+  background-color: var(--color-white);
   color: var(--color-text);
 }
 
@@ -33,7 +46,7 @@ body {
 .news-header,
 .news-main,
 .provider-tab,
-.provider-grid {
+.provider-view {
   width: 930px;
   margin: 0 auto;
 }
@@ -98,6 +111,8 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
+  position: relative;
+  height: 44px;
 }
 
 .rolling-item {
@@ -108,6 +123,14 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.rolling-item.next {
+  transform: translateY(100%);
 }
 
 .news-provider {
@@ -138,37 +161,32 @@ body {
   margin-bottom: 24px;
 }
 
-.provider-tab-text {
+.text-tab-group {
   display: flex;
+  align-items: center;
   gap: 24px;
 }
 
-.provider-tab-icon {
-  display: flex;
-  gap: 8px;
-}
-
-.tab-logo {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-}
-
-.tab-item {
+.text-tab {
   font-size: 16px;
   font-weight: 500;
   margin: 0;
-  color: #879298;
+  color: var(--color-gray-400);
   cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  align-items: center;
+  line-height: 1;
 }
 
-.tab-item--active {
+.text-tab--active {
   color: var(--color-text);
   font-weight: 700;
   position: relative;
 }
 
-.tab-subscribe {
+.text-tab--subscribed {
   display: flex;
   gap: 4px;
 }
@@ -177,31 +195,81 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #7890E7;
+  background-color: var(--color-primary-light);
   width: 20px;
   height: 20px;
-  color: #FFFFFF;
+  color: var(--color-white);
   font-size: 12px;
   border-radius: 8px;
 }
 
+.text-tab--active .sub-badge {
+  background-color: var(--color-primary);
+  font-weight: 500;
+}
+
+.icon-tab-group {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-tab {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.icon-tab img {
+  opacity: 0.6;
+  filter: grayscale(100%);
+}
+
+.icon-tab--active img {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
 /* =========================
-  Provider Grid
+  Provider View
 ========================= */
-.provider-grid-wrapper {
-  display: grid;
+.provider-view {
   position: relative;
   align-items: center;
 }
 
+.provider-view__content {
+  flex: 1;
+}
+
+.view {
+  display: none;
+}
+
+.view--grid.view--active {
+  display: grid;
+}
+
+.view--list.view--active {
+  display: block;
+}
+
 .provider-grid {
+  display: grid;
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
   grid-template-columns: repeat(6, 1fr);
   border-top: 1px solid var(--color-border);
   border-left: 1px solid var(--color-border);
+}
+
+.provider-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .provider-item {
@@ -224,10 +292,27 @@ body {
   background-color: var(--color-bg);
 }
 
+.provider-logo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.provider-logo {
+  transition: opacity 0.2s ease;
+}
+
+.provider-item:hover .provider-logo {
+  opacity: 0;
+}
+
 /* =========================
   Grid Navigation Buttons
 ========================= */
-.grid-nav-btn {
+.nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -235,12 +320,47 @@ body {
   border: none;
   padding: none;
   cursor: pointer;
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.grid-nav-btn--prev {
+.nav-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-btn--prev {
   left: -70px;
 }
 
-.grid-nav-btn--next {
+.nav-btn--next {
   right: -70px;
+}
+
+/* =========================
+  Subscribe Button
+========================= */
+.sub-button {
+  width: 72px;
+  height: 24px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  padding: 16px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background-color: var(--color-white);
+  color: var(--color-gray-500);
+  cursor: pointer;
+  opacity: 0;
+}
+
+.provider-item:hover .sub-button {
+  opacity: 1;
+  pointer-events: auto;
 }

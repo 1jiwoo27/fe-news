@@ -1,47 +1,47 @@
 export const rollingNews = {
-    left: [
-        {
-            provider: '연합뉴스',
-            headline: '도심 공원 ‘조용한 독서존’ 시범 운영… 시민 호응 이어져',
-        },
-        {
-            provider: '한국경제',
-            headline: '중소기업 체감 경기 소폭 개선, 고용 지표는 여전히 부진',
-        },
-        {
-            provider: '서울신문',
-            headline: '지방자치단체, 생활 밀착형 교통 개선 사업 확대',
-        },
-        {
-            provider: '질병관리청',
-            headline: '겨울철 독감 유행 주의보… 예방 접종 당부',
-        },
-        {
-            provider: '국토일보',
-            headline: '청년 주거 지원 정책 개편 논의 본격화',
-        },
-    ],
+  left: [
+    {
+      provider: '연합뉴스TV',
+      headline: '수도권 출근길 혼잡 완화 대책, 현장 반응은',
+    },
+    {
+      provider: '한국경제',
+      headline: '고금리 기조 장기화… 기업 투자 전략 변화',
+    },
+    {
+      provider: 'KBS',
+      headline: '청년 취업 시장 변화, 현장 목소리 집중 조명',
+    },
+    {
+      provider: '중앙일보',
+      headline: '디지털 전환 가속화, 산업 지형도 달라진다',
+    },
+    {
+      provider: '파이낸셜뉴스',
+      headline: '국내 스타트업 투자 환경, 회복 신호 보이나',
+    },
+  ],
 
-    right: [
-        {
-            provider: '서울경제',
-            headline: '착한 소비 캠페인, 지역 상권 회복에 긍정적 영향',
-        },
-        {
-            provider: '전자신문',
-            headline: 'AI 활용 행정 서비스 확대… 민원 처리 속도 개선',
-        },
-        {
-            provider: '매일경제',
-            headline: '국내 증시 혼조세 마감, 투자자 관망 심리 지속',
-        },
-        {
-            provider: '교육부',
-            headline: '초·중등 교육 과정 개편안 발표… 현장 의견 수렴',
-        },
-        {
-            provider: '문화일보',
-            headline: '문화·예술 행사, 지역 경제 활성화 효과 분석',
-        },
-    ],
+  right: [
+    {
+      provider: 'SBS Biz',
+      headline: '소비 심리 지표 소폭 반등… 내수 회복 기대',
+    },
+    {
+      provider: '뉴스토마토',
+      headline: '부동산 시장 관망세 지속, 거래량은 정체',
+    },
+    {
+      provider: '아이뉴스24',
+      headline: 'IT 업계 신기술 경쟁 격화, 시장 주도권은',
+    },
+    {
+      provider: '미디어오늘',
+      headline: '플랫폼 환경 변화 속 언론의 생존 전략',
+    },
+    {
+      provider: '일간스포츠',
+      headline: '프로 스포츠 리그 개막, 팬 기대감 고조',
+    },
+  ],
 };

@@ -1,19 +1,36 @@
-import { getSubscribedCount } from './state/subscription.js';
-import { initPressGrid } from './components/pressGrid.js';
-import { initProviderTabs } from './components/providerTabs.js';
 import { initRollingNews } from './components/rollingNews.js';
-
-const badge = document.querySelector('.sub-badge');
-
-function updateSubscriptionBadge() {
-    const count = getSubscribedCount();
-    badge.textContent = count;
-}
+import { initSubscriptionBadge } from './components/subBadge.js';
+import { initPressGrid } from './components/pressGrid.js';
+import { initNavigation } from './components/navigation.js';
+import { initTextTabs } from './components/textTabs.js';
+import { initIconTabs } from './components/iconTabs.js';
+import { initProviderView } from './components/providerView.js';
 
 initRollingNews();
-initProviderTabs();
-initPressGrid({
-    onSubscribeChange: updateSubscriptionBadge,
+initSubscriptionBadge();
+
+const grid = initPressGrid();
+
+const navigation = initNavigation({
+  onPrev: () => {
+    const state = grid.goPrev();
+    if (state) navigation.update(state);
+  },
+  onNext: () => {
+    const state = grid.goNext();
+    if (state) navigation.update(state);
+  },
 });
 
-updateSubscriptionBadge();
+navigation.update(grid.render());
+
+initTextTabs((tab) => {
+  const state = grid.setTab(tab);
+  navigation.update(state);
+});
+
+const providerView = initProviderView();
+
+initIconTabs((view) => {
+  providerView.setView(view);
+});
