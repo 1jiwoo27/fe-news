@@ -1,5 +1,6 @@
-import { isSubscribed, toggleSubscribe } from '../store/subscription.js';
+import { isSubscribed, addSubscription } from '../store/subscription.js';
 import { initSubscriptionBadge } from './subBadge.js';
+import { createSubAlert } from './subAlert.js';
 
 const BUTTON_TEXT = {
   subscribed: '× 해지하기',
@@ -15,7 +16,7 @@ export function createSubButton(pressId) {
 
   button.addEventListener('click', (e) => {
     e.stopPropagation();
-    toggleSubscribe(pressId);
+    (isSubscribed(pressId)) ? createSubAlert(pressId) : addSubscription(pressId);
     updateButton(button, pressId);
     subscriptionBadge.update();
   });

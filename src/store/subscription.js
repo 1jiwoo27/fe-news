@@ -15,6 +15,16 @@ export function toggleSubscribe(id) {
   save();
 }
 
+export function addSubscription(id) {
+  subscribedIds.add(id);
+  save();
+}
+
+export function removeSubscription(id) {
+  subscribedIds.delete(id);
+  save();
+}
+
 export function getSubscribedCount() {
   return subscribedIds.size;
 }
