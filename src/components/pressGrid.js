@@ -35,6 +35,8 @@ export function initPressGrid() {
 
       const logo = document.createElement('img');
       logo.src = src;
+      logo.alt = id;
+      logo.loading = 'lazy';
       logo.className = 'provider-logo';
 
       const subButton = createSubButton(id);
