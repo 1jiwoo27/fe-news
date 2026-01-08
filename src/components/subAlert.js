@@ -1,6 +1,6 @@
 import { removeSubscription } from '../store/subscription';
 
-export function createSubAlert(pressId, pressGrid) {
+export function createSubAlert(pressId) {
   if (document.querySelector('.sub-alert')) return;
 
   const alert = document.createElement('div');

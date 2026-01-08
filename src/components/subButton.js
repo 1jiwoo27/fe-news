@@ -1,4 +1,4 @@
-import { isSubscribed, addSubscription, subscribe } from '../store/subscription.js';
+import { isSubscribed, addSubscription } from '../store/subscription.js';
 import { createSubAlert } from './subAlert.js';
 
 const BUTTON_TEXT = {
@@ -17,7 +17,6 @@ export function createSubButton(pressId) {
   }
 
   update();
-  subscribe(update);
 
   button.addEventListener('click', (e) => {
     e.stopPropagation();
