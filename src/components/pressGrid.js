@@ -99,8 +99,8 @@ export function initPressGrid() {
     update,
     destroy() {
       unsubscribe();
-    }
-  }
+    },
+  };
 
   return pressGrid;
 }

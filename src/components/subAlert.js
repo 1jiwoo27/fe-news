@@ -13,10 +13,7 @@ export function createSubAlert(pressId) {
   pressName.className = 'press-name';
   pressName.textContent = pressId;
 
-  message.append(
-    pressName,
-    '을(를)\n구독 해지하시겠습니까?'
-  );
+  message.append(pressName, '을(를)\n구독 해지하시겠습니까?');
 
   const confirmButton = document.createElement('button');
   confirmButton.className = 'confirm-button';
@@ -35,7 +32,7 @@ export function createSubAlert(pressId) {
     alert.remove();
   });
 
-  const messageWrapper = document.createElement('div'); 
+  const messageWrapper = document.createElement('div');
   messageWrapper.className = 'alert-meassage';
   messageWrapper.appendChild(message);
 

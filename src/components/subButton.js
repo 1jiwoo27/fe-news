@@ -9,18 +9,16 @@ const BUTTON_TEXT = {
 export function createSubButton(pressId) {
   const button = document.createElement('button');
   button.className = 'sub-button';
-  
+
   function update() {
-    button.textContent = isSubscribed(pressId) 
-      ? BUTTON_TEXT.subscribed
-      : BUTTON_TEXT.unsubscribed;
+    button.textContent = isSubscribed(pressId) ? BUTTON_TEXT.subscribed : BUTTON_TEXT.unsubscribed;
   }
 
   update();
 
   button.addEventListener('click', (e) => {
     e.stopPropagation();
-    (isSubscribed(pressId)) ? createSubAlert(pressId) : addSubscription(pressId);
+    isSubscribed(pressId) ? createSubAlert(pressId) : addSubscription(pressId);
   });
 
   return button;
