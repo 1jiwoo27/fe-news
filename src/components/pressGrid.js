@@ -63,9 +63,6 @@ export function initPressGrid() {
   function update() {
     const data = getGridData();
     const lastPage = getLastPage(data.length);
-    if (currentPage > lastPage) {
-      currentPage = lastPage;
-    }
     return render();
   }
 
