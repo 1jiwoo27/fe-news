@@ -17,11 +17,15 @@ export function initPressGrid() {
       : shuffledPressLogos.filter(({ id }) => isSubscribed(id));
   }
 
+  function getLastPage(length) {
+    return Math.max(0, Math.ceil(length / PER_PAGE) - 1);
+  }
+
   function render() {
     grid.innerHTML = '';
 
     const data = getGridData();
-    const lastPage = Math.max(0, Math.ceil(data.length / PER_PAGE) - 1);
+    const lastPage = getLastPage(data.length);
 
     const start = currentPage * PER_PAGE;
     const items = data.slice(start, start + PER_PAGE);
@@ -39,7 +43,7 @@ export function initPressGrid() {
       logo.loading = 'lazy';
       logo.className = 'provider-logo';
 
-      const subButton = createSubButton(id);
+      const subButton = createSubButton(id, pressGrid);
 
       wrapper.append(logo, subButton);
       li.appendChild(wrapper);
@@ -54,6 +58,15 @@ export function initPressGrid() {
     }
 
     return { page: currentPage, lastPage };
+  }
+
+  function update() {
+    const data = getGridData();
+    const lastPage = getLastPage(data.length);
+    if (currentPage > lastPage) {
+      currentPage = lastPage;
+    }
+    return render();
   }
 
   function setTab(tab) {
@@ -76,10 +89,13 @@ export function initPressGrid() {
     return render();
   }
 
-  return {
+  const pressGrid = {
     render,
     setTab,
     goPrev,
     goNext,
-  };
+    update,
+  }
+
+  return pressGrid;
 }

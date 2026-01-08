@@ -9,14 +9,14 @@ const BUTTON_TEXT = {
 
 const subscriptionBadge = initSubscriptionBadge();
 
-export function createSubButton(pressId) {
+export function createSubButton(pressId, pressGrid) {
   const button = document.createElement('button');
   button.className = 'sub-button';
   updateButton(button, pressId);
 
   button.addEventListener('click', (e) => {
     e.stopPropagation();
-    (isSubscribed(pressId)) ? createSubAlert(pressId) : addSubscription(pressId);
+    (isSubscribed(pressId)) ? createSubAlert(pressId, pressGrid) : addSubscription(pressId);
     updateButton(button, pressId);
     subscriptionBadge.update();
   });
