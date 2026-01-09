@@ -317,7 +317,7 @@ body {
   display: flex;
   align-items: center;
   height: 40px;
-  background-color: #f7f9fb;
+  background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   margin-bottom: 0;
   overflow-x: auto;
@@ -329,10 +329,11 @@ body {
 
 .provider-list-category-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   padding: 0 20px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-gray-400);
   cursor: pointer;
@@ -341,15 +342,15 @@ body {
 }
 
 .provider-list-category-item.active {
+  width: 166px;
   background-color: var(--color-primary-light);
   color: var(--color-white);
   font-weight: 700;
 }
 
 .provider-list-category-item .page-indicator {
-  margin-left: 10px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 700;
   opacity: 0.9;
 }
 

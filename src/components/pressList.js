@@ -46,6 +46,11 @@ export function initPressList() {
         item.textContent = name;
       }
 
+      item.addEventListener('click', () => {
+        if (name === categoryName) return;
+        moveToCategory(name);
+      });
+
       category.appendChild(item);
     });
 
@@ -133,6 +138,19 @@ export function initPressList() {
       page: currentIndex,
       lastPage: data.length - 1,
     };
+  }
+
+  function moveToCategory(category) {
+    const data = getListData();
+    const categoryList = categorizedData[category];
+    if (!categoryList || categoryList.length === 0) return;
+
+    const targetItem = categoryList[0];
+    const targetIndex = data.indexOf(targetItem);
+    if (targetIndex === -1) return;
+
+    currentIndex = targetIndex;
+    return render();
   }
 
   function setTab(tab) {
