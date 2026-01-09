@@ -399,6 +399,12 @@ body {
   gap: 24px;
 }
 
+.provider-list-right-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .main-article {
   display: block;
   text-decoration: none;
@@ -439,6 +445,12 @@ body {
 
 .related-articles a:hover {
   text-decoration: underline;
+}
+
+.related-text {
+  font-size: 14px;
+  color: var(--color-gray-400);
+  font-weight: 500;
 }
 
 /* =========================

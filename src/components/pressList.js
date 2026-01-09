@@ -116,6 +116,12 @@ export function initPressList() {
 
     mainArticle.append(mainImg, mainTitle);
 
+    const leftBody = document.createElement('div');
+    leftBody.className = 'provider-list-left-body';
+    leftBody.appendChild(mainArticle);
+
+    const rightBody = document.createElement('div');
+    rightBody.className = 'provider-list-right-body';
     const relatedList = document.createElement('ul');
     relatedList.className = 'related-articles';
 
@@ -129,7 +135,13 @@ export function initPressList() {
       relatedList.appendChild(li);
     });
 
-    body.append(mainArticle, relatedList);
+    const relatedText = document.createElement('p');
+    relatedText.className = 'related-text';
+    relatedText.textContent = `${item.press} 언론사에서 직접 편집한 뉴스입니다.`;
+
+    rightBody.appendChild(relatedList);
+    rightBody.appendChild(relatedText);
+    body.append(leftBody, rightBody);
 
     wrapper.append(header, body);
     list.appendChild(wrapper);
