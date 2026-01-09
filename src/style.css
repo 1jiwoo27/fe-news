@@ -564,11 +564,18 @@ body {
 .confirm-button {
   width: 160px;
   height: 48px;
-  border: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-left: none;
+  border-bottom: none;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   color: var(--color-subtext);
+}
+
+.cancel-button {
+  border-right: none;
 }
 
 .alert-buttons {
