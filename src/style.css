@@ -306,7 +306,6 @@ body {
   opacity: 0;
 }
 
-
 /* =========================
   List View
 ========================= */
@@ -386,7 +385,7 @@ body {
   color: #5f6e76;
 }
 
-.provider-list .sub-button{
+.provider-list .sub-button {
   position: static;
   pointer-events: auto;
   opacity: 1;
@@ -432,7 +431,7 @@ body {
 
 .related-articles a {
   text-decoration: none;
-  color: #4B5966;
+  color: #4b5966;
   font-size: 16px;
   line-height: 22px;
 }
@@ -440,7 +439,6 @@ body {
 .related-articles a:hover {
   text-decoration: underline;
 }
-
 
 /* =========================
   Grid Navigation Buttons

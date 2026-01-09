@@ -33,4 +33,3 @@ export function initProviderSection() {
     controller.setView(view);
   });
 }
-

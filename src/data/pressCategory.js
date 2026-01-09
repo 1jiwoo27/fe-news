@@ -1,6 +1,6 @@
 import pressData from './pressData.json';
 
-const CATEGORIES = [
+export const CATEGORIES = [
   '종합/경제',
   '방송/통신',
   'IT',
@@ -11,12 +11,12 @@ const CATEGORIES = [
 ];
 
 export function groupByCategory(data) {
-  return data.reduce((acc, item) => {
+  return data.reduce((categories, item) => {
     const { category } = item;
-    if (!acc[category]) {
-      acc[category] = [];
+    if (!categories[category]) {
+      categories[category] = [];
     }
-    acc[category].push(item);
-    return acc;
+    categories[category].push(item);
+    return categories;
   }, {});
 }

@@ -1,12 +1,9 @@
 import pressData from '../data/pressData.json';
-import { groupByCategory } from '../data/pressCategory.js';
+import { groupByCategory, CATEGORIES } from '../data/pressCategory.js';
 import { createSubButton } from './subButton.js';
 import { isSubscribed, subscribe } from '../store/subscription.js';
 
-let currentTab = 'all';
-
 const categorizedData = groupByCategory(pressData);
-console.log(categorizedData);
 
 export function initPressList() {
   const list = document.querySelector('.provider-list');
@@ -15,20 +12,28 @@ export function initPressList() {
   let currentIndex = 0;
 
   function getListData() {
-    return currentTab === 'all'
-      ? pressData
-      : pressData.filter(({ press }) => isSubscribed(press));
+    return currentTab === 'all' ? pressData : pressData.filter(({ press }) => isSubscribed(press));
   }
 
-  function renderCategory({ index, lastIndex }) {
+  function getCategoryIndexInfo(item) {
+    const categoryList = categorizedData[item.category];
+    const categoryIndex = categoryList.indexOf(item);
+
+    return {
+      index: categoryIndex + 1,
+      lastIndex: categoryList.length,
+    };
+  }
+
+  function renderCategory({ categoryName, index, lastIndex }) {
     const category = document.createElement('div');
     category.className = 'provider-list-category';
 
-    CATEGORIES.forEach((name, i) => {
+    CATEGORIES.forEach((name) => {
       const item = document.createElement('div');
       item.className = 'provider-list-category-item';
 
-      if (i === 0) {
+      if (name === categoryName) {
         item.classList.add('active');
 
         const page = document.createElement('span');
@@ -54,14 +59,18 @@ export function initPressList() {
     const item = data[currentIndex];
     if (!item) return null;
 
-    const category = renderCategory({
-      index: currentIndex + 1,
-      lastIndex: data.length,
-    });
-    list.appendChild(category);
+    const { index, lastIndex } = getCategoryIndexInfo(item);
 
-    const li = document.createElement('div');
-    li.className = 'provider-list-item';
+    list.appendChild(
+      renderCategory({
+        categoryName: item.category,
+        index,
+        lastIndex,
+      }),
+    );
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'provider-list-item';
 
     const header = document.createElement('header');
     header.className = 'provider-list-header';
@@ -117,12 +126,12 @@ export function initPressList() {
 
     body.append(mainArticle, relatedList);
 
-    li.append(header, body);
-    list.appendChild(li);
+    wrapper.append(header, body);
+    list.appendChild(wrapper);
 
     return {
       page: currentIndex,
-      lastPage: data.length,
+      lastPage: data.length - 1,
     };
   }
 
